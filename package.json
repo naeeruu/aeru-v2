@@ -1,0 +1,25 @@
+{
+  "name": "aeru-v2",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imnyv/myuu.git"
+  },
+  "author": "zokuru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imnyv/aeru-v2/issues"
+  },
+  "homepage": "https://github.com/imnyv/aeru-v2#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "mongodb": "^4.13.0"
+  }
+}
