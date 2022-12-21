@@ -7,3 +7,6 @@ const client = new Client({
   ]
 });
 client.commands = new Collection();
+
+import * as events from "./events/events.js";
+console.log(events);
