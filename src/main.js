@@ -10,6 +10,11 @@ const client = new Client({
 client.mongo = new MongoClient(process.env.MONGO_URI);
 client.commands = new Collection();
 
+import * as commands from "./commands/commands.js";
+for (const command of Object.values(commands)) {
+  client.commands.set(client.commands.size, command);
+};
+
 import * as events from "./events/events.js";
 for (const event of Object.values(events)) {
   if (event.once) {
