@@ -1,1 +1,1 @@
-export * from "./ready.js";
+export { default } from "./ready.js";
