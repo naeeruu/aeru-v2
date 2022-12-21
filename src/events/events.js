@@ -1,2 +1,2 @@
-export { default } from "./interaction.js";
-export { default } from "./ready.js";
+export { default as InteractionCreate } from "./interaction.js";
+export { default as ClientReady } from "./ready.js";
