@@ -1,6 +1,6 @@
 import { Events } from "discord.js";
 
-export const event = {
+export default {
   name: Events.ClientReady,
   once: true,
   async execute(client) {
