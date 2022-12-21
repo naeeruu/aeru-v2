@@ -7,7 +7,7 @@ const client = new Client({
   ]
 });
 
-client.mongo = new MongoClient({ url: process.env.MONGO_URI });
+client.mongo = new MongoClient(process.env.MONGO_URI);
 client.commands = new Collection();
 
 import * as events from "./events/events.js";
