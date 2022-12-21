@@ -1,2 +1,2 @@
-# aeru-v2
+## Aeru V2 - 🌸
 revisi bot aeru ((*´ω｀*))
