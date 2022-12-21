@@ -1,1 +1,1 @@
-export ready from "./ready.js";
+export * from "./ready.js";
