@@ -11,8 +11,7 @@ client.mongo = new MongoClient(process.env.MONGO_URI);
 client.commands = new Collection();
 
 import * as events from "./events/events.js";
-for (const eventParam of Object.keys(events)) {
-  const event = events[eventParam];
+for (const event of Object.values(events)) {
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args));
   } else {
