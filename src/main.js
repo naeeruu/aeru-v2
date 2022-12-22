@@ -24,7 +24,4 @@ for (const event of Object.values(events)) {
   }
 };
 
-import config from "./config.json" assert { type: "json" };
-console.log(config);
-
 client.login(process.env.DISCORD_TOKEN);
