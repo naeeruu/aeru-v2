@@ -1,5 +1,5 @@
 import { Events } from "discord.js";
-import { defaultPrefix } from "../config.json";
+import { defaultPrefix } from "../config.json" assert { type: "json" };
 
 export default {
   name: Events.MessageCreate,
@@ -9,6 +9,9 @@ export default {
     const { timestamp } = await message.client.mongo.db("client").collection("conn").findOne({ _id: message.client.id });
     if (timestamp !== message.client.readyTimestamp) return await process.exit(0);
 
-    const prefixList = (await message.client.mongo.db("prefix").collection(message.guildId).findOne({ _id: message.guildId }))?.data ?? defaultPrefix;
+    const prefix = (await message.client.mongo.db("prefix").collection(message.guildId).findOne({ _id: message.guildId }))?.data ?? defaultPrefix;
+    if (message.content.startsWith(prefix)) {
+      
+    }
   }
 };
