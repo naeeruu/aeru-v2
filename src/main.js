@@ -9,7 +9,10 @@ const client = new Client({
   ]
 });
 
-client.mongo = new MongoClient(process.env.MONGO_URI);
+import * as config from "./config.js";
+client.config = config;
+
+client.mongo = new MongoClient(config.mongo.uri);
 client.commands = new Collection();
 
 import * as commands from "./commands/commands.js";
@@ -27,4 +30,4 @@ for (const eventName of Object.keys(events)) {
   }
 };
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(config.discord.token);
