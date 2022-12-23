@@ -1,5 +1,5 @@
 import { Events } from "discord.js";
-import { defaultPrefix } from "../config.json" assert { type: "json" };
+import config from "../config.json" assert { type: "json" };
 
 export default {
   async execute(message) {
