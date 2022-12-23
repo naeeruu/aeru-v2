@@ -15,7 +15,8 @@ export default {
     .addSubcommand(sub => sub.setName("list")
       .setDescription("🐨 — Lihat daftar autoresponder(*´ω｀*)")
       .addNumberOption(option => option.setName("page")
-        .setDescription("🐨 — Halaman autoresponder")))
+        .setDescription("🐨 — Halaman autoresponder")
+        .setMinValues(1)))
     .setDMPermission(false),
   async execute(interaction) {
     if (!interaction.client.config.discord.moderators.includes(interaction.user.id)) {
@@ -67,7 +68,25 @@ export default {
           }
         break;
         case "list":
+          const page = await interaction.options.getNumber("page");
           const autoresponseList = await data.find().toArray();
+          const display = autoresponseList.filter((index) => index >= (page - 1) * 24 && index <= (page * 24));
+
+          if (display.length === 0) {
+            const lastPageIndex = autoresponseList.length / 25;
+            const lastPage = lastPageIndex > Math.floor(lastPageIndex) ? Math.floor(lastPageIndex) + 1 : lastPageIndex;
+            return await interaction.editReply({
+              content: `Halaman terakhir autoresponder adalah ${lastPage.toLocaleString()}`
+            })
+          } else {
+            return await interaction.editReply({
+              embeds: [
+                EmbedBuilder.from(interaction.client.config.discord.color)
+                  .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
+                  .setDescription(`Inilah daftar autoresponder yang ada pada halaman ${page.toLocaleString()}`)
+                  .setFields(display.map(ar => ({ name: `ID: ${ar._id}`, value: `- ${ar.tag}\n- ${ar.response}`, inline: true })))
+             });
+          }
         break;
       }
     }
