@@ -16,11 +16,12 @@ for (const command of Object.values(commands)) {
 };
 
 import * as events from "./events/events.js";
-for (const event of Object.values(events)) {
+for (const eventName of Object.keys(events)) {
+  const event = events[eventName];
   if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
+    client.once(Events[eventName], (...args) => event.execute(...args));
   } else {
-    client.on(event.name, (...args) => event.execute(...args));
+    client.on(Events[eventName], (...args) => event.execute(...args));
   }
 };
 
