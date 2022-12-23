@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
 
-const client = new Client({
+export const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
