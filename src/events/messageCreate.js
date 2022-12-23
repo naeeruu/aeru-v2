@@ -14,5 +14,15 @@ export default {
     } catch(error) {
       console.error(error);
     }
+
+    if (message.channelId === "965760731133919232") {
+      try {
+        if (message.attachments.find(data => data.contentType.startsWith("image"))) return await message.startThread({
+          name: `rate ${message.author.username}'s art(*´ω｀*)`
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    }
   }
 };
