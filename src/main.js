@@ -26,7 +26,7 @@ for (const eventName of Object.keys(events)) {
   if (event.once) {
     client.once(Events[eventName], (...args) => event.execute(...args));
   } else {
-    client.on(Events[eventname], (...args) => event.execute(...args));
+    client.on(Events[eventName], (...args) => event.execute(...args));
   }
 };
 
