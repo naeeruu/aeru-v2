@@ -3,15 +3,19 @@ import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 export default {
   data: new SlashCommandBuilder()
     .setName("autoresponse")
-    .setDescription("🐨 — Kustomisasi autoresponder mu")
+    .setDescription("🐨 — Kustomisasi autoresponder mu(*´ω｀*)")
     .addSubcommand(sub => sub.setName("create")
-      .setDescription("🐨 — Buat autoresponder baru")
+      .setDescription("🐨 — Buat autoresponder baru(*´ω｀*)")
       .addStringOption(option => option.setName("tag")
         .setDescription("🐨 — Konten pesan untuk memanggil autorespon ini")
         .setMaxLength(512))
       .addStringOption(option => option.setName("response")
         .setDescription("🐨 — Konten pesan untuk merespon autorespon ini")
         .setMaxLength(512)))
+    .addSubcommand(sub => sub.setName("list")
+      .setDescription("🐨 — Lihat daftar autoresponder(*´ω｀*)")
+      .addNumberOption(option => option.setName("page")
+        .setDescription("🐨 — Halaman autoresponder"))
     .setDMPermission(false),
   async execute(interaction) {
     if (!interaction.client.config.discord.moderators.includes(interaction.user.id)) {
@@ -61,6 +65,9 @@ export default {
               console.error(error);
             }
           }
+        break;
+        case "list":
+          const autoresponseList = await data.find().toArray();
         break;
       }
     }
