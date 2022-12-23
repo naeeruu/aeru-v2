@@ -8,10 +8,10 @@ export default {
       .setDescription("🐨 — Buat autoresponder baru")
       .addStringOption(option => option.setName("tag")
         .setDescription("🐨 — Konten pesan untuk memanggil autorespon ini")
-        .setMaxValues(512))
+        .setMaxLength(512))
       .addStringOption(option => option.setName("response")
         .setDescription("🐨 — Konten pesan untuk merespon autorespon ini")
-        .setMaxValues(512)))
+        .setMaxLength(512)))
     .setDMPermission(false),
   async execute(interaction) {
     if (!interaction.client.config.discord.moderators.includes(interaction.userId)) {
