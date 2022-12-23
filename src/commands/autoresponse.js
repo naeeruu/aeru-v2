@@ -35,7 +35,7 @@ export default {
               embeds: [
                 EmbedBuilder.from(interaction.client.config.discord.embed)
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
-                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${autoresponse._id}\`]\n\\* Gunakan \`\\/autoresponse delete id\\:${autoresponse._id}\` untuk menghapus autoresponse ini`)
+                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`${autoresponse._id}\`]\n\\* Gunakan \`\/autoresponse delete id\:${autoresponse._id}\` untuk menghapus autoresponse ini`)
                   .setFields(
                     { name: "Tag~", value: autoresponse.tag, inline: true },
                     { name: "Respon~", value: autoresponse.response, inline: true }
@@ -45,12 +45,12 @@ export default {
             });
           } else {
             try {
-              const { insertedId } = await data.insertOne({ _id: (autoresponses.length + 1), tag, response, creator: { username: interaction.user.username, id: interaction.user.id } });
+              const { insertedId } = await data.insertOne({ tag, response, creator: { username: interaction.user.username, id: interaction.user.id } });
               await interaction.editReply({
                 embeds: [
                   EmbedBuilder.from(interaction.client.config.discord.embed)
                     .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
-                    .setDescription(`Autorespon baru telah ditambahkan! (\\*\\´ω\\｀\\*) [\`#${insertedId}\`]`)
+                    .setDescription(`Autorespon baru telah ditambahkan! (\\*\\´ω\\｀\\*)\n[\`${insertedId}\`]`)
                     .setFields(
                       { name: "Tag~", value: tag, inline: true },
                       { name: "Respon~", value: response, inline: true }
