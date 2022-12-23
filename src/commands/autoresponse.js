@@ -81,7 +81,7 @@ export default {
           } else {
             return await interaction.editReply({
               embeds: [
-                EmbedBuilder.from(interaction.client.config.discord.color)
+                EmbedBuilder.from(interaction.client.config.discord.embed)
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
                   .setDescription(`Inilah daftar autoresponder yang ada pada halaman ${page.toLocaleString()}`)
                   .setFields(display.map(ar => ({ name: `ID: ${ar._id}`, value: `- ${ar.tag}\n- ${ar.response}`, inline: true })))
