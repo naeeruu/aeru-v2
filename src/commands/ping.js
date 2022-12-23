@@ -1,4 +1,4 @@
-# -- This command file is deprecated;
+// -- This command file is deprecated;
 
 import { SlashCommandBuilder } from "discord.js";
 
