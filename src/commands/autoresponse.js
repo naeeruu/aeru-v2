@@ -38,7 +38,7 @@ export default {
                     { name: "Tag~", value: data.tag },
                     { name: "Respon~", value: data.response }
                   )
-                  .setFooter({ text: `Dibuat oleh ${data.creator.username} chan~ (${data.creator.id})` });
+                  .setFooter({ text: `Dibuat oleh ${data.creator.username} chan~ (${data.creator.id})` })
               ]
             });
           } else {
