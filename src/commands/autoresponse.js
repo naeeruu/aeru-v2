@@ -22,20 +22,18 @@ export default {
       const subcommand = await interaction.options.getSubcommand();
       await interaction.deferReply();
 
-      const data = await interaction.client.mongo.db("autoresponse").collection(interaction.guildId);
-
       switch (subcommand) {
         case "create":
-          const tag = await interaction.options.getString("tag");
+          const tag = await interaction.options.getString("tag").toLowerCase();
           const response = await interaction.options.getString("response");
 
-          const autoresponse = await data.find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
+          const autoresponse = await interaction.client.mongo.db("autoresponse").collection(interaction.guildId).findOne({ tag });
           if (autoresponse) {
             return await interaction.editReply({
               embeds: [
                 new EmbedBuilder.from(interaction.client.config.discord.embed)
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
-                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${autoresponse._id}\`]`)
+                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${autoresponse._id}\`]\n\\* Gunakan \`\\/autoresponse delete id\\:${autoresponse._id}\` untuk menghapus autoresponse ini`)
                   .setFields(
                     { name: "Tag~", value: autoresponse.tag },
                     { name: "Respon~", value: autoresponse.response }
