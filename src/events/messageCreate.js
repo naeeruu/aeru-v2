@@ -1,6 +1,8 @@
+import { client } from "../main.js";
 import { Events } from "discord.js";
 
 export default {
+  class: client,
   async execute(message) {
     if (message.author.bot) return;
 
