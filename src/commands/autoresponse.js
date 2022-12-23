@@ -22,14 +22,14 @@ export default {
       const subcommand = await interaction.options.getSubcommand();
       await interaction.deferReply();
 
-      const data = interaction.client.mongo.db("autoresponse").collection(interaction.guildId);
+      const data = await interaction.client.mongo.db("autoresponse").collection(interaction.guildId);
 
       switch (subcommand) {
         case "create":
           const tag = await interaction.options.getString("tag");
           const response = await interaction.options.getString("response");
 
-          const autoresponse = data.find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
+          const autoresponse = await data.find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
           if (autoresponse) {
             return await interaction.editReply({
               embeds: [
