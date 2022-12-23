@@ -28,8 +28,8 @@ export default {
           const response = await interaction.options.getString("response");
 
           const data = await interaction.client.mongo.db("autoresponse").find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
-          if (data) return {
-            await interaction.editReply({
+          if (data) {
+            return await interaction.editReply({
               embeds: [
                 new EmbedBuilder.from(interaction.client.config.discord.embed)
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
@@ -39,6 +39,7 @@ export default {
                     { name: "Respon~", value: data.response }
                   )
                   .setFooter({ text: `Dibuat oleh ${data.creator.username} chan~ (${data.creator.id})` });
+              ]
             });
           } else {
             
