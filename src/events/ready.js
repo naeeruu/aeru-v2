@@ -1,4 +1,7 @@
+import { client } from "../main.js";
+
 export default {
+  class: client,
   once: true,
   async execute(client) {
     await console.log(`Connected! ^^`);
