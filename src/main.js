@@ -24,9 +24,9 @@ import * as events from "./events/events.js";
 for (const eventName of Object.keys(events)) {
   const event = events[eventName];
   if (event.once) {
-    event.class.once(Events[eventName], (...args) => event.execute(...args));
+    event.class.once(eventName, (...args) => event.execute(...args));
   } else {
-    event.class.on(Events[eventName], (...args) => event.execute(...args));
+    event.class.on(eventName, (...args) => event.execute(...args));
   }
 };
 
