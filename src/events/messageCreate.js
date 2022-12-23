@@ -1,4 +1,3 @@
-import * as config from "../config.js";
 import { Events } from "discord.js";
 
 export default {
