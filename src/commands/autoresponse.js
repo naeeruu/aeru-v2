@@ -22,23 +22,25 @@ export default {
       const subcommand = await interaction.options.getSubcommand();
       await interaction.deferReply();
 
+      const data = interaction.client.mongo.db("autoresponse").collection(interaction.guildId);
+
       switch (subcommand) {
         case "create":
           const tag = await interaction.options.getString("tag");
           const response = await interaction.options.getString("response");
 
-          const data = await interaction.client.mongo.db("autoresponse").find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
-          if (data) {
+          const autoresponse = data.find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
+          if (autoresponse) {
             return await interaction.editReply({
               embeds: [
                 new EmbedBuilder.from(interaction.client.config.discord.embed)
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
-                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${data._id}\`]`)
+                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${autoresponse._id}\`]`)
                   .setFields(
-                    { name: "Tag~", value: data.tag },
-                    { name: "Respon~", value: data.response }
+                    { name: "Tag~", value: autoresponse.tag },
+                    { name: "Respon~", value: autoresponse.response }
                   )
-                  .setFooter({ text: `Dibuat oleh ${data.creator.username} chan~ (${data.creator.id})` })
+                  .setFooter({ text: `Dibuat oleh ${autoresponse.creator.username} chan~ (${autoresponse.creator.id})` })
               ]
             });
           } else {
