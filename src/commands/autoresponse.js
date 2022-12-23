@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -20,9 +20,31 @@ export default {
       });
     } else {
       const subcommand = await interaction.options.getSubcommand();
-      await interaction.reply({
-        content: `[ Tidak ada perintah untuk dieksekusi ]`
-      });
+      await interaction.deferReply();
+
+      switch (subcommand) {
+        case "create":
+          const tag = await interaction.options.getString("tag");
+          const response = await interaction.options.getString("response");
+
+          const data = await interaction.client.mongo.db("autoresponse").find().toArray().find(data => data.tag.toLowerCase() === tag.toLowerCase());
+          if (data) return {
+            await interaction.editReply({
+              embeds: [
+                new EmbedBuilder.from(interaction.client.config.discord.embed)
+                  .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
+                  .setDescription(`Autoresponder dengan tag ini sudah ada~ (\\*\\´ω\\｀\\*) [\`#${data._id}\`]`)
+                  .setFields(
+                    { name: "Tag~", value: data.tag },
+                    { name: "Respon~", value: data.response }
+                  )
+                  .setFooter({ text: `Dibuat oleh ${data.creator.username} chan~ (${data.creator.id})` });
+            });
+          } else {
+            
+          }
+        break;
+      }
     }
   }
 };
