@@ -70,7 +70,7 @@ export default {
         case "list":
           const page = await interaction.options.getNumber("page");
           const autoresponseList = await data.find().toArray();
-          const display = autoresponseList.filter((index, ar) => index >= (page - 1) * 24 && index <= (page * 24));
+          const display = autoresponseList.filter((ar, index) => index >= (page - 1) * 24 && index <= (page * 24));
 
           if (display.length === 0) {
             const lastPageIndex = autoresponseList.length / 25;
