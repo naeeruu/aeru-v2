@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
 
-export const client = new Client({
+const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -24,9 +24,9 @@ import * as events from "./events/events.js";
 for (const eventName of Object.keys(events)) {
   const event = events[eventName];
   if (event.once) {
-    event.class.once(eventName, (...args) => event.execute(...args));
+    client.once(Events[eventName], (...args) => event.execute(...args));
   } else {
-    event.class.on(eventName, (...args) => event.execute(...args));
+    client.on(Events[eventname], (...args) => event.execute(...args));
   }
 };
 
