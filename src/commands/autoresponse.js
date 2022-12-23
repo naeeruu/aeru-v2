@@ -28,7 +28,7 @@ export default {
           const tag = await interaction.options.getString("tag");
           const response = await interaction.options.getString("response");
 
-          const autoresponses = (await data.find()).toArray();
+          const autoresponses = (await data.find().toArray());
           const autoresponse = autoresponses.find(data => data.tag.toLowerCase() === tag.toLowerCase());
           if (autoresponse) {
             return await interaction.editReply({
