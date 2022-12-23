@@ -85,7 +85,8 @@ export default {
                   .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
                   .setDescription(`Inilah daftar autoresponder yang ada pada halaman ${page.toLocaleString()}`)
                   .setFields(display.map(ar => ({ name: `ID: ${ar._id}`, value: `- ${ar.tag}\n- ${ar.response}`, inline: true })))
-             });
+              ]
+            });
           }
         break;
       }
