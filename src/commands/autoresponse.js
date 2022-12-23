@@ -14,7 +14,7 @@ export default {
         .setMaxLength(512)))
     .setDMPermission(false),
   async execute(interaction) {
-    if (!interaction.client.config.discord.moderators.includes(interaction.userId)) {
+    if (!interaction.client.config.discord.moderators.includes(interaction.user.id)) {
       return await interaction.reply({
         content: `[ Perintah hanya bisa dieksekusi admin bot ]`
       });
