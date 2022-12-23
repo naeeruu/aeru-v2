@@ -15,7 +15,7 @@ export default {
     .addSubcommand(sub => sub.setName("list")
       .setDescription("🐨 — Lihat daftar autoresponder(*´ω｀*)")
       .addNumberOption(option => option.setName("page")
-        .setDescription("🐨 — Halaman autoresponder"))
+        .setDescription("🐨 — Halaman autoresponder")))
     .setDMPermission(false),
   async execute(interaction) {
     if (!interaction.client.config.discord.moderators.includes(interaction.user.id)) {
