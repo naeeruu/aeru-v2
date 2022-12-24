@@ -8,15 +8,23 @@ export default {
       .setDescription("🐨 — Buat autoresponder baru(*´ω｀*)")
       .addStringOption(option => option.setName("tag")
         .setDescription("🐨 — Konten pesan untuk memanggil autorespon ini")
-        .setMaxLength(512))
+        .setMaxLength(512)
+        .setRequired(true))
       .addStringOption(option => option.setName("response")
         .setDescription("🐨 — Konten pesan untuk merespon autorespon ini")
-        .setMaxLength(512)))
+        .setMaxLength(512)
+        .setRequired(true)))
     .addSubcommand(sub => sub.setName("list")
       .setDescription("🐨 — Lihat daftar autoresponder(*´ω｀*)")
       .addNumberOption(option => option.setName("page")
         .setDescription("🐨 — Halaman autoresponder")
-        .setMinValue(1)))
+        .setMinValue(1)
+        .setRequired(true)))
+    .addSubcommand(sub => sub.setName("delete")
+      .setDescription("🐨 — Hapus autoresponder(*´ω｀*)")
+      .addStringOption(option => option.setName("id")
+        .setDescription("🐨 — ID Autoresponder yang ingin dihapus")
+        .setRequired(true)))
     .setDMPermission(false),
   async execute(interaction) {
     if (!interaction.client.config.discord.moderators.includes(interaction.user.id)) {
@@ -88,6 +96,9 @@ export default {
               ]
             });
           }
+        break;
+        case "delete":
+          
         break;
       }
     }
