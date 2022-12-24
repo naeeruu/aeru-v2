@@ -98,7 +98,27 @@ export default {
           }
         break;
         case "delete":
-          
+          const _id = await interaction.options.getString("id");
+          const deleted = await data.deleteOne({ _id });
+
+          if (deleted.deletedCount === 0) {
+            return await interaction.editReply({
+              embeds: [
+                new EmbedBuilder()
+                  .setColor(0x444444)
+                  .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
+                  .setDescription(`Tidak ada autoresponder dengan id **${_id}** (・–・;)ゞ`)
+              ]
+            });
+          } else {
+            return await interaction.editReply({
+              embeds: [
+                EmbedBuilder.from(interaction.client.config.discord.embed)
+                  .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL() })
+                  .setDescription(`Autoresponder dengan id **${_id}** berhasil dihapus (◡ ω ◡)`)
+              ]
+            });
+          }
         break;
       }
     }
