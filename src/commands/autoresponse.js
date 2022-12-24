@@ -1,4 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ObjectId } from "mongodb";
 
 export default {
   data: new SlashCommandBuilder()
@@ -98,7 +99,7 @@ export default {
           }
         break;
         case "delete":
-          const _id = await interaction.options.getString("id");
+          const _id = ObjectId(interaction.options.getString("id"));
           const deleted = await data.deleteOne({ _id });
 
           if (deleted.deletedCount === 0) {
