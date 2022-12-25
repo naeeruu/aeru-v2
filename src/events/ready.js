@@ -1,4 +1,5 @@
 export default {
+  class: "DiscordClient",
   once: true,
   async execute(client) {
     await console.log(`Connected! ^^`);
