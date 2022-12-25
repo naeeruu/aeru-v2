@@ -3,7 +3,6 @@ export default {
   once: true,
   async execute(client) {
     await console.log(`Connected! ^^`);
-    await console.log(client.client.client);
     await client.application.commands.set(client.commands.map(command => command.data));
 
     await client.mongo.connect();
