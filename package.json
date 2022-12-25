@@ -1,6 +1,6 @@
 {
   "name": "aeru-v2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "src/main.js",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/vnnfx/aeru-v2#readme",
   "devDependencies": {},
   "dependencies": {
+    "@octokit/rest": "^19.0.5",
     "discord.js": "^14.7.1",
     "mongodb": "^4.13.0"
   }
