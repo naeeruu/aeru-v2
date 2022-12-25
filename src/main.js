@@ -23,10 +23,17 @@ for (const command of Object.values(commands)) {
 import * as events from "./events/events.js";
 for (const eventName of Object.keys(events)) {
   const event = events[eventName];
-  if (event.once) {
-    client.once(Events[eventName], (...args) => event.execute(...args));
-  } else {
-    client.on(Events[eventName], (...args) => event.execute(...args));
+  switch (event.class) {
+    case "DiscordClient":
+      if (event.once) {
+        client.once(Events[eventName], (...args) => event.execute(...args));
+      } else {
+        client.on(Events[eventName], (...args) => event.execute(...args));
+      }
+    break;
+    case "Process":
+      process.on(eventName, (...args) => event.execute(...args));
+    break;
   }
 };
 
