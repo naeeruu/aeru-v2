@@ -44,4 +44,5 @@ for (const eventName of Object.keys(events)) {
 };
 
 client.login(config.discord.token);
-export { github };
+
+export { config, github };
