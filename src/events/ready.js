@@ -3,6 +3,7 @@ export default {
   once: true,
   async execute(client) {
     await console.log(`Connected! ^^`);
+    return throw new Error("Tes error (*´ω｀*)");
     await client.application.commands.set(client.commands.map(command => command.data));
 
     await client.mongo.connect();
