@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { Octokit } from "@octokit/rest";
 import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
@@ -14,6 +15,9 @@ client.config = config;
 
 client.mongo = new MongoClient(config.mongo.uri);
 client.commands = new Collection();
+client.github = new Octokit({
+  auth: config.github.token
+});
 
 import * as commands from "./commands/commands.js";
 for (const command of Object.values(commands)) {
