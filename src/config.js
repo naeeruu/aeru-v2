@@ -7,6 +7,13 @@ export const discord = {
   },
   token: process.env.DISCORD_TOKEN
 };
+
+export const github = {
+  owner: "vnnfx",
+  repo: "aeru-v2",
+  token: process.env.GH_TOKEN
+};
+
 export const mongo = {
   uri: process.env.MONGO_URI
 };
