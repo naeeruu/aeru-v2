@@ -1,4 +1,5 @@
 export default {
+  class: "DiscordClient",
   async execute(message) {
     if (message.author.bot) return;
 
