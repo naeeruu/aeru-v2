@@ -15,11 +15,9 @@ client.config = config;
 
 client.mongo = new MongoClient(config.mongo.uri);
 client.commands = new Collection();
-
-const github = new Octokit({
+client.github = new Octokit({
   auth: config.github.token
 });
-client.github = github;
 
 import * as commands from "./commands/commands.js";
 for (const command of Object.values(commands)) {
@@ -37,12 +35,7 @@ for (const eventName of Object.keys(events)) {
         client.on(Events[eventName], (...args) => event.execute(...args));
       }
     break;
-    case "Process":
-      process.on(eventName, (...args) => event.execute(...args));
-    break;
   }
 };
 
 client.login(config.discord.token);
-
-export { config, github };
