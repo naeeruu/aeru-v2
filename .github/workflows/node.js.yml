@@ -26,5 +26,6 @@ jobs:
     - run: npm run build --if-present
     - run: npm start
       env:
-        MONGO_URI: ${{ secrets.MONGO_URI }}
         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        MONGO_URI: ${{ secrets.MONGO_URI }}
