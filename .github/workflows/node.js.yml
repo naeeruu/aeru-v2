@@ -4,21 +4,21 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '0 */3 * * *'
-
-build:
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      node-version: [19.x]
-  steps:
-  - uses: actions/checkout@v3
-  - name: Use Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v3
-    with:
-      node-version: ${{ matrix.node-version }}
-      cache: 'npm'
-  - run: npm install
-  - run: npm start
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install
+    - run: npm start
       env:
         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
