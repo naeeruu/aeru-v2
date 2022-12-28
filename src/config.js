@@ -1,10 +1,11 @@
 export const discord = {
-  moderators: [
-    "937998965754986526"
-  ],
   embed: {
     color: 0xFFEAE0
   },
+  id: "1055059120539054160",
+  moderators: [
+    "937998965754986526"
+  ],
   token: process.env.DISCORD_TOKEN
 };
 
