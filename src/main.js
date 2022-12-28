@@ -1,13 +1,22 @@
 import { MongoClient } from "mongodb";
 import { Octokit } from "@octokit/rest";
-import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
+import { ActivityType, Client, Collection, Events, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent
-  ]
+  ],
+  presence: {
+    activities: [
+      {
+        name: "our memorable photos",
+        type: ActivityType.Watching
+      }
+    ],
+    status: "idle"
+  }
 });
 
 import * as config from "./config.js";
