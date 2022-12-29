@@ -6,6 +6,9 @@ export const discord = {
   moderators: [
     "937998965754986526"
   ],
+  filteredWords: [
+    "anjing", "bangsat", "kontol", "memek", "asu", "bajingan", "babi", "ngentod", "ngentot", "kampang"
+  ],
   token: process.env.DISCORD_TOKEN
 };
 
