@@ -18,7 +18,7 @@ export default {
 
     let isFiltered = false;
     for (const filteredWords of message.client.config.discord.filteredWords) {
-      if (message.content.toLowerCase().includes(filteredWords)) return isFiltered = true;
+      if (message.content.toLowerCase().includes(filteredWords)) isFiltered = true;
     };
     if (isFiltered) {
       await message.delete();
