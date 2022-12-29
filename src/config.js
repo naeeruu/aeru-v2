@@ -7,7 +7,7 @@ export const discord = {
     "937998965754986526"
   ],
   filteredWords: [
-    "anjing", "bangsat", "kontol", "memek", "asu", "bajingan", "babi", "ngentod", "ngentot", "kampang"
+    "anjing", "bangsat", "kontol", "memek", "asu", "bajingan", "babi", "ngentod", "ngentot", "kampang", "shit", "fuck", "jembut", "jembud", "kontod", "ajg", "mmk"
   ],
   token: process.env.DISCORD_TOKEN
 };
