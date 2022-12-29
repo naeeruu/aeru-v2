@@ -16,6 +16,15 @@ export default {
       console.error(error);
     }
 
+    let isFiltered = false;
+    for (const filteredWords of message.client.config.discord.filteredWords) {
+      if (message.content.toLowerCase().includes(filteredWords)) return isFiltered = true;
+    };
+    if (isFiltered) {
+      await message.delete();
+      await message.channel.send({ content: `lain kali jangan gitu ya ${message.author.toString()} <:_:985941800273469480>` })
+    }
+
     if (message.channelId === "965760731133919232") {
       try {
         if (message.attachments.find(data => data.contentType.startsWith("image"))) return await message.startThread({
