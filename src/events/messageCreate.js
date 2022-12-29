@@ -16,13 +16,17 @@ export default {
       console.error(error);
     }
 
-    let isFiltered = false;
+    message.isFiltered = false;
     for (const filteredWords of message.client.config.discord.filteredWords) {
       if (message.content.toLowerCase().includes(filteredWords)) isFiltered = true;
     };
-    if (isFiltered) {
-      await message.delete();
-      await message.channel.send({ content: `lain kali jangan gitu ya ${message.author.toString()} <:_:985941800273469480>` })
+    if (message.isFiltered) {
+      try {
+        await message.delete();
+        await message.channel.send({ content: `lain kali jangan gitu ya ${message.author.toString()} <:_:985941800273469480>` });
+      } catch(error) {
+        console.error(error);
+      }
     }
 
     if (message.channelId === "965760731133919232") {
