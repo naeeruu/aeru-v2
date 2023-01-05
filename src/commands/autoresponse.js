@@ -19,8 +19,7 @@ export default {
       .setDescription("🐨 — Lihat daftar autoresponder(*´ω｀*)")
       .addNumberOption(option => option.setName("page")
         .setDescription("🐨 — Halaman autoresponder")
-        .setMinValue(1)
-        .setRequired(true)))
+        .setMinValue(1)))
     .addSubcommand(sub => sub.setName("delete")
       .setDescription("🐨 — Hapus autoresponder(*´ω｀*)")
       .addStringOption(option => option.setName("id")
@@ -81,7 +80,7 @@ export default {
           const autoresponseList = await data.find().toArray();
           const display = autoresponseList.filter((ar, index) => index >= (page - 1) * 24 && index <= (page * 24));
 
-          if (display.length === 0) {
+          if (!display.length) {
             const lastPageIndex = autoresponseList.length / 25;
             const lastPage = lastPageIndex > Math.floor(lastPageIndex) ? Math.floor(lastPageIndex) + 1 : lastPageIndex;
             return await interaction.editReply({
