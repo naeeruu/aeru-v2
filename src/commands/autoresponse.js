@@ -58,7 +58,7 @@ export default {
             });
           } else {
             try {
-              const { insertedId } = await data.insertOne({ tag, response, creator: { username: interaction.user.username, id: interaction.user.id } });
+              const { insertedId } = await data.insertOne({ _id: Date.now().toString(36), tag, response, creator: { username: interaction.user.username, id: interaction.user.id } });
               await interaction.editReply({
                 embeds: [
                   EmbedBuilder.from(interaction.client.config.discord.embed)
